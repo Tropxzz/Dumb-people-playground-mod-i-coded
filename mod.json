@@ -1,0 +1,20 @@
+{
+    "Name": "Random Mod",
+    "Author": "Tropxz/Jimmy",
+    "Description": "This mod is such a pro istfg",
+    "ModVersion": "9999",
+    "GameVersion": "1.0+",
+    "ThumbnailPath": "ModStuff/pixil-frame-0 (2).png",
+    "EntryPoint": "Mod.Mod",
+    "Tags": [
+      "Fun",
+      "random",
+      "idontknow",
+      "sopro",
+      "aaaaaaaaaaaaa"
+    ],
+    "Scripts": [
+      "script.cs",
+      "Scripts/CategoryBuilder.cs"
+    ]
+  }
