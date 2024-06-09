@@ -99,6 +99,7 @@ namespace Mod
             });
 
             // Register a custom human called Isaiah
+/*
             ModAPI.Register(new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Human"),
@@ -120,12 +121,13 @@ namespace Mod
                     person.SetBloodColour(108, 0, 4);
                 }
             });
+*/
 
             ModAPI.Register(new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Human"),
                 NameOverride = "DUDE MAN!",
-                DescriptionOverride = "Some random dude with a nice texture",
+                DescriptionOverride = "Some random dude that is also a alien",
                 CategoryOverride = ModAPI.FindCategory("Random Mod"),
                 ThumbnailOverride = ModAPI.LoadSprite("Sprites/Prooo.png"),
                 AfterSpawn = (Instance) =>
@@ -138,15 +140,15 @@ namespace Mod
                     person.SetBruiseColor(86, 62, 130);
                     person.SetSecondBruiseColor(154, 0, 7);
                     person.SetThirdBruiseColor(207, 206, 120);
-                    person.SetRottenColour(202, 199, 104);
-                    person.SetBloodColour(108, 0, 4);
+                    person.SetRottenColour(0,255,0);
+                    person.SetBloodColour(0,255,0);
                 }
             });
 
             ModAPI.Register(new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Isaiah Remaster",
+                NameOverride = "Isaiah",
                 DescriptionOverride = "A Male Human Specimen from ________",
                 CategoryOverride = ModAPI.FindCategory("Random Mod"),
                 ThumbnailOverride = ModAPI.LoadSprite("Sprites/IsaiahRemaster.png"),
@@ -165,18 +167,62 @@ namespace Mod
                 }
             });
 
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Elijah",
+                DescriptionOverride = "A Male Human Specimen from ________",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/pleasework.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/pleasework.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
 
             // Register another custom human called Rock with a bikini
             ModAPI.Register(new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Human"),
-                NameOverride = "Rock with a bikini",
+                NameOverride = "Rock with a bikini (looks hidious)",
                 DescriptionOverride = "sob",
                 CategoryOverride = ModAPI.FindCategory("Random Mod"),
-                ThumbnailOverride = ModAPI.LoadSprite("Sprites/pro.png"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/revampedpro.png"),
                 AfterSpawn = (Instance) =>
                 {
-                    var skin = ModAPI.LoadTexture("Sprites/pro.png");
+                    var skin = ModAPI.LoadTexture("Sprites/revampedpro.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Me",
+                DescriptionOverride = "A male Speciman that lives in sydney",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/me.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/me.png");
                     var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
                     var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
                     var person = Instance.GetComponent<PersonBehaviour>();
@@ -190,6 +236,7 @@ namespace Mod
             });
 
             // Register another custom human called Elijah
+/*
             ModAPI.Register(new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Human"),
@@ -211,6 +258,7 @@ namespace Mod
                     person.SetBloodColour(108, 0, 4);
                 }
             });
+            */
 
             // Register a custom pistol called Gun Agent 47 uses
             ModAPI.Register(new Modification()
@@ -241,12 +289,26 @@ namespace Mod
                 }
             });
 
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Knife"),
+                NameOverride = "Knife 2.0",
+                DescriptionOverride = "Pro",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/knife2.0.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/knife2.0.png");
+                    Instance.FixColliders();
+                }
+            });
+
             // Register an explosion rod
             ModAPI.Register(new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Rod"),
-                NameOverride = "Explosion",
-                DescriptionOverride = "BANG",
+                NameOverride = "Logo",
+                DescriptionOverride = "Spawn the Mind Blowning Terrible Logo of Random Mod",
                 CategoryOverride = ModAPI.FindCategory("Random Mod"),
                 ThumbnailOverride = ModAPI.LoadSprite("ModStuff/pixil-frame-0 (2).png"),
                 AfterSpawn = (Instance) =>
@@ -256,8 +318,82 @@ namespace Mod
                     Instance.FixColliders();
                 }
             });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Flamethrower"),
+                NameOverride = "Flame Thrower",
+                DescriptionOverride = "Reskinned to be colorful and bright",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/flamethrower.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/flamethrower.png");
+                    Instance.FixColliders();
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Flamethrower"),
+                NameOverride = "Flame Thrower",
+                DescriptionOverride = "Reskinned to be colorful and bright",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/flamethrower.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/flamethrower.png");
+                    Instance.FixColliders();
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Handgrenade"),
+                NameOverride = "Blue Grenade",
+                DescriptionOverride = "I have no idea",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/grenade.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/grenade.png");
+                    Instance.FixColliders();
+                }
+            });
+
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Rod"),
+                NameOverride = "Random Mod Fedora",
+                DescriptionOverride = "WARNING: IT WILL NOT AUTOMATICALLY WELD TO HEAD YOU HAVE TO MANUALLY WELD IT TO THE HEAD WITH THE BLACK WIRE THING",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/Random mod fedora.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/Random mod fedora.png");
+                    Instance.FixColliders();
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Knife"),
+                NameOverride = "A decent looking katana",
+                DescriptionOverride = "im getting so good at pixel art ong",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/Katana.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/Katana.png");
+                    Instance.FixColliders();
+                }
+            });
+
         }
     }
+
+
 
     public class BikeHornAttachmentBehaviour : FirearmAttachmentBehaviour
     {
