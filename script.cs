@@ -254,8 +254,22 @@ namespace Mod
                 ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/Revolver.png"),
                 AfterSpawn = (Instance) =>
                 {
-                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/revovler.png");
+                   Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/revovler.png");
+                    var firearm = Instance.GetComponent<FirearmBehaviour>();
+                    Cartridge customCartridge = ModAPI.FindCartridge("9mm");
+                    customCartridge.name = "7.63×25mm Mauser";
+                    customCartridge.Damage *= 10f;
+                    customCartridge.StartSpeed *= 100f;
+                    customCartridge.Recoil *= 0.001f;
+                    customCartridge.ImpactForce *= 50f;
+                    firearm.Cartridge = customCartridge;
+                    firearm.ShotSounds = new AudioClip[]
+                    {
+                        ModAPI.LoadSound("Sounds/Gun Shot 1.wav"),
+                        ModAPI.LoadSound("Sounds/Gun Shot 2.wav")
+                    };
                     Instance.FixColliders();
+
                 }
             });
 
@@ -284,6 +298,20 @@ namespace Mod
                 AfterSpawn = (Instance) =>
                 {
                     Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/AR-15.png");
+                    Instance.FixColliders();
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Pistol"),
+                NameOverride = "My Glock 19",
+                DescriptionOverride = "Pro",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/ihatethisfuckingglock19glock19itssofuckinggaylikeiwanttothrowitinthetrashbecauseitssogayomfgeverytimeiseeitiwanttofuckingcryandcryandcry.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/ihatethisfuckingglock19glock19itssofuckinggaylikeiwanttothrowitinthetrashbecauseitssogayomfgeverytimeiseeitiwanttofuckingcryandcryandcry.png");
                     Instance.FixColliders();
                 }
             });
