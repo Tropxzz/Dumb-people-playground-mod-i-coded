@@ -190,6 +190,120 @@ namespace Mod
             });
 
 
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Elijah",
+                DescriptionOverride = "A Male Human Specimen from ________",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/pleasework.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/pleasework.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Zeke",
+                DescriptionOverride = "A Male Human Specimen from ________",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/zeke.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/zeke.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+
+                    var head = Instance.transform.GetChild(5);
+                    var childObject = new GameObject("Helmet");
+                    childObject.transform.SetParent(head);
+                    childObject.transform.localPosition = new Vector3(0f, 0.25f);
+                    childObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    childObject.transform.localScale = new Vector3(1f, 1f);
+                    var childSprite = childObject.AddComponent<SpriteRenderer>();
+                    childSprite.sprite = ModAPI.LoadSprite("Sprites/zeketophalf.png");
+                    childSprite.sortingLayerName = "Bottom";
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Revolver"),
+                NameOverride = "Isaiah's Revolver",
+                DescriptionOverride = "Isaiah's Beautiful Revolver",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/Revolver.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/revovler.png");
+                    Instance.FixColliders();
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Shotgun"),
+                NameOverride = "Elijah's Shotgun",
+                DescriptionOverride = "ChopStick Shotgun?",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/shotgunchopstickthing.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/shotgunchopstickthing.png");
+                    Instance.FixColliders();
+                }
+            });
+
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Assault Rifle"),
+                NameOverride = "My AR-15",
+                DescriptionOverride = "Pro",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/AR-15.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/AR-15.png");
+                    Instance.FixColliders();
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Minigun"),
+                NameOverride = "Zeke's Minigun",
+                DescriptionOverride = "A minigun with a fedora?",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/FedoraMinigun.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/FedoraMinigun.png");
+                    Instance.FixColliders();
+                }
+            });
+
+
+
             // Register another custom human called Rock with a bikini
             ModAPI.Register(new Modification()
             {
