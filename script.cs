@@ -7,6 +7,8 @@ namespace Mod
     {
         public static void Main()
         {
+
+            ModAPI.RegisterLiquid(DurabilitySyringe.DurabilitySerum.ID, new DurabilitySyringe.DurabilitySerum());
             // Create a new category for the mod items
             CategoryBuilder.Create("Random Mod", "So pro for some reason", ModAPI.LoadSprite("ModStuff/pixil-frame-0 (2).png"));
 
@@ -248,7 +250,7 @@ namespace Mod
             ModAPI.Register(new Modification()
             {
                 OriginalItem = ModAPI.FindSpawnable("Revolver"),
-                NameOverride = "Isaiah's Revolver",
+                NameOverride = "Isaiah's Revolver Buffed",
                 DescriptionOverride = "Isaiah's Beautiful Revolver",
                 CategoryOverride = ModAPI.FindCategory("Random Mod"),
                 ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/Revolver.png"),
@@ -272,6 +274,68 @@ namespace Mod
 
                 }
             });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Revolver"),
+                NameOverride = "Isaiah's Revolver Not Buffed",
+                DescriptionOverride = "Isaiah's Beautiful Revolver",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Thumbnails/Revolver.png"),
+                AfterSpawn = (Instance) =>
+                {
+                   Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/revovler.png");
+                    var firearm = Instance.GetComponent<FirearmBehaviour>();
+                    Cartridge customCartridge = ModAPI.FindCartridge("9mm");
+                    customCartridge.name = "7.63×25mm Mauser";
+                    customCartridge.Damage *= 1f;
+                    customCartridge.StartSpeed *= 2f;
+                    customCartridge.Recoil *= 1f;
+                    customCartridge.ImpactForce *= 5f;
+                    firearm.Cartridge = customCartridge;
+                    firearm.ShotSounds = new AudioClip[]
+                    {
+                        ModAPI.LoadSound("Sounds/Gun Shot 1.wav"),
+                        ModAPI.LoadSound("Sounds/Gun Shot 2.wav")
+                    };
+                    Instance.FixColliders();
+
+                }
+            });
+
+         ModAPI.Register(
+                new Modification()
+                {
+                    OriginalItem = ModAPI.FindSpawnable("Acid Syringe"), // derive from a syringe
+                    NameOverride = "Randomify people",
+                    DescriptionOverride = "Pro",
+                    CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                    AfterSpawn = (Instance) =>
+                    {
+                        // destroy the existing syringe behaviour
+                        UnityEngine.Object.Destroy(Instance.GetComponent<SyringeBehaviour>());
+
+                        // add the new syringe behaviour (unless it already exists)
+                        Instance.GetOrAddComponent<DurabilitySyringe>();
+                    }
+                }
+            );
+
+         ModAPI.Register(
+                new Modification()
+                {
+                    OriginalItem = ModAPI.FindSpawnable("Sword"), // derive from a syringe
+                    NameOverride = "pro sword",
+                    DescriptionOverride = "Are you a pro? use this",
+                    CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                    ThumbnailOverride = ModAPI.LoadSprite("Sprites/Sword.png"),
+                    AfterSpawn = (Instance) =>
+                    {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/Sword.png");
+                    Instance.FixColliders();
+                    }
+                }
+            );
 
             ModAPI.Register(new Modification()
             {
@@ -318,6 +382,21 @@ namespace Mod
 
             ModAPI.Register(new Modification()
             {
+                OriginalItem = ModAPI.FindSpawnable("Pistol"),
+                NameOverride = "Bartoli75R",
+                DescriptionOverride = "Another gun hitman uses",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/Bartoli75R.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    Instance.GetComponent<SpriteRenderer>().sprite = ModAPI.LoadSprite("Sprites/Bartoli75R.png");
+                    Instance.FixColliders();
+                }
+            });
+
+
+            ModAPI.Register(new Modification()
+            {
                 OriginalItem = ModAPI.FindSpawnable("Minigun"),
                 NameOverride = "Zeke's Minigun",
                 DescriptionOverride = "A minigun with a fedora?",
@@ -354,6 +433,117 @@ namespace Mod
                     person.SetBloodColour(108, 0, 4);
                 }
             });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Diana Burnwood (looks hidious)",
+                DescriptionOverride = "sob",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/missburnwoodmedonza.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/missburnwoodmedonza.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Me With beanie and gloves",
+                DescriptionOverride = "why is this decent",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/mewithglovesandbeanie.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/mewithglovesandbeanie.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Agent 47",
+                DescriptionOverride = "THE MAN THE MYTH THE TOP ICA AGENT ",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/47.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/47.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Agent 47 NeonCity Suit",
+                DescriptionOverride = "THE MAN THE MYTH THE TOP ICA AGENT",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/47neoncity.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/47neoncity.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
+            ModAPI.Register(new Modification()
+            {
+                OriginalItem = ModAPI.FindSpawnable("Human"),
+                NameOverride = "Agent 47 Requeim Suit",
+                DescriptionOverride = "THE MAN THE MYTH THE TOP ICA AGENT",
+                CategoryOverride = ModAPI.FindCategory("Random Mod"),
+                ThumbnailOverride = ModAPI.LoadSprite("Sprites/47Requeim.png"),
+                AfterSpawn = (Instance) =>
+                {
+                    var skin = ModAPI.LoadTexture("Sprites/47Requeim.png");
+                    var flesh = ModAPI.LoadTexture("Human Stuff/flesh layer.png");
+                    var bone = ModAPI.LoadTexture("Human Stuff/bone layer.png");
+                    var person = Instance.GetComponent<PersonBehaviour>();
+                    person.SetBodyTextures(skin, flesh, bone, 1);
+                    person.SetBruiseColor(86, 62, 130);
+                    person.SetSecondBruiseColor(154, 0, 7);
+                    person.SetThirdBruiseColor(207, 206, 120);
+                    person.SetRottenColour(202, 199, 104);
+                    person.SetBloodColour(108, 0, 4);
+                }
+            });
+
 
             ModAPI.Register(new Modification()
             {
@@ -567,4 +757,39 @@ namespace Mod
                 0.5f);
         }
     }
+
+    public class DurabilitySyringe : SyringeBehaviour
+{
+    public override string GetLiquidID() => DurabilitySerum.ID;
+
+    public class DurabilitySerum : Liquid
+    {
+        public const string ID = "Randomify people";
+
+        public DurabilitySerum()
+        {
+            Color = new UnityEngine.Color(0.69f, 1f, 0.35f);
+        }
+
+        public override void OnEnterLimb(LimbBehaviour limb)
+        {
+            limb.BreakingThreshold = 10000;
+            limb.Health = 10000;
+
+        }
+
+        public override void OnUpdate(BloodContainer container)
+        {
+            
+        }
+
+        public override void OnEnterContainer(BloodContainer container)
+        {
+        }
+    
+        public override void OnExitContainer(BloodContainer container)
+        {
+        }
+    }
+}
 }
